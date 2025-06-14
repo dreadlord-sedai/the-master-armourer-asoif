@@ -227,6 +227,170 @@ const MilitaryAnalytics = () => {
         { name: 'Battle of the Trident', outcome: 'Victory', impact: 'Killed Prince Rhaegar' },
         { name: 'Siege of Storm\'s End', outcome: 'Defensive Victory', impact: 'Held against Tyrell siege' }
       ]
+    },
+    martell: {
+      name: 'House Martell',
+      sigil: '☀️',
+      region: 'Dorne',
+      totalForces: 25000,
+      color: 'text-orange-400',
+      borderColor: 'border-orange-500',
+      strengths: [
+        { category: 'Desert Warfare', rating: 98, description: 'Unmatched in desert conditions and heat' },
+        { category: 'Guerrilla Tactics', rating: 95, description: 'Masters of hit-and-run warfare' },
+        { category: 'Poison Knowledge', rating: 90, description: 'Deadly expertise with toxins and venoms' },
+        { category: 'Mobility', rating: 92, description: 'Fast-moving light cavalry and infantry' },
+        { category: 'Defensive Terrain', rating: 88, description: 'Desert provides natural defense' }
+      ],
+      weaknesses: [
+        { category: 'Numbers', rating: 25, description: 'Smallest army among major houses' },
+        { category: 'Heavy Armor', rating: 35, description: 'Prefer light equipment over heavy armor' },
+        { category: 'Open Field Battles', rating: 40, description: 'Struggle against massed formations' },
+        { category: 'Siege Warfare', rating: 45, description: 'Limited experience with prolonged sieges' }
+      ],
+      composition: {
+        infantry: { count: 15000, quality: 75, specialty: 'Desert spearmen' },
+        cavalry: { count: 7000, quality: 85, specialty: 'Light desert cavalry' },
+        archers: { count: 3000, quality: 80, specialty: 'Poison arrows' }
+      },
+      notable_commanders: [
+        { name: 'Oberyn Martell', specialty: 'Single combat', reputation: 95 },
+        { name: 'Doran Martell', specialty: 'Strategic planning', reputation: 85 },
+        { name: 'Ellaria Sand', specialty: 'Unconventional warfare', reputation: 70 }
+      ],
+      strategic_assets: [
+        'Sunspear - Desert stronghold',
+        'Dornish Passes - Narrow mountain routes',
+        'Water Gardens - Hidden fortress',
+        'Desert Knowledge - Intimate terrain familiarity'
+      ],
+      recent_battles: [
+        { name: 'War of Conquest Resistance', outcome: 'Defensive Victory', impact: 'Only kingdom to resist Targaryen conquest' },
+        { name: 'Red Viper vs Mountain', outcome: 'Pyrrhic Victory', impact: 'Oberyn\'s legendary duel' }
+      ]
+    },
+    arryn: {
+      name: 'House Arryn',
+      sigil: '🦅',
+      region: 'The Vale',
+      totalForces: 30000,
+      color: 'text-sky-400',
+      borderColor: 'border-sky-500',
+      strengths: [
+        { category: 'Mountain Warfare', rating: 95, description: 'Unbeatable in mountainous terrain' },
+        { category: 'Defensive Position', rating: 98, description: 'Eyrie is impregnable fortress' },
+        { category: 'Elite Knights', rating: 90, description: 'Knights of the Vale are renowned' },
+        { category: 'Fresh Troops', rating: 92, description: 'Untouched by recent conflicts' },
+        { category: 'Loyalty', rating: 88, description: 'Strong bonds with mountain clans' }
+      ],
+      weaknesses: [
+        { category: 'Isolation', rating: 30, description: 'Difficult to deploy forces quickly' },
+        { category: 'Numbers', rating: 40, description: 'Limited population in mountains' },
+        { category: 'Naval Access', rating: 25, description: 'Poor naval capabilities' },
+        { category: 'Winter Vulnerability', rating: 35, description: 'Passes become impassable in winter' }
+      ],
+      composition: {
+        infantry: { count: 18000, quality: 85, specialty: 'Mountain infantry' },
+        cavalry: { count: 10000, quality: 92, specialty: 'Knights of the Vale' },
+        archers: { count: 2000, quality: 80, specialty: 'Mountain archers' }
+      },
+      notable_commanders: [
+        { name: 'Jon Arryn', specialty: 'Honor and wisdom', reputation: 90 },
+        { name: 'Bronze Yohn Royce', specialty: 'Traditional warfare', reputation: 85 },
+        { name: 'Petyr Baelish', specialty: 'Political maneuvering', reputation: 75 }
+      ],
+      strategic_assets: [
+        'The Eyrie - Impregnable mountain fortress',
+        'Gulltown - Major port city',
+        'Bloody Gate - Sole mountain entrance',
+        'Mountain Clans - Local allies and scouts'
+      ],
+      recent_battles: [
+        { name: 'Robert\'s Rebellion', outcome: 'Victory', impact: 'Jon Arryn led the rebellion' },
+        { name: 'Battle of the Bastards Support', outcome: 'Victory', impact: 'Knights of Vale saved the day' }
+      ]
+    },
+    greyjoy: {
+      name: 'House Greyjoy',
+      sigil: '🐙',
+      region: 'Iron Islands',
+      totalForces: 20000,
+      color: 'text-slate-500',
+      borderColor: 'border-slate-500',
+      strengths: [
+        { category: 'Naval Combat', rating: 98, description: 'Greatest naval power in Westeros' },
+        { category: 'Raiding', rating: 95, description: 'Unmatched in coastal raids and pillaging' },
+        { category: 'Seamanship', rating: 92, description: 'Born sailors and navigators' },
+        { category: 'Individual Ferocity', rating: 90, description: 'Feared warriors in close combat' },
+        { category: 'Mobility', rating: 88, description: 'Can strike anywhere along coastlines' }
+      ],
+      weaknesses: [
+        { category: 'Land Warfare', rating: 35, description: 'Poor performance away from ships' },
+        { category: 'Numbers', rating: 30, description: 'Small population on barren islands' },
+        { category: 'Siege Warfare', rating: 25, description: 'No experience with prolonged sieges' },
+        { category: 'Logistics', rating: 40, description: 'Dependent on raiding for supplies' }
+      ],
+      composition: {
+        infantry: { count: 8000, quality: 70, specialty: 'Ironborn reavers' },
+        cavalry: { count: 2000, quality: 45, specialty: 'Limited mounted troops' },
+        archers: { count: 10000, quality: 85, specialty: 'Ship-based marines and sailors' }
+      },
+      notable_commanders: [
+        { name: 'Balon Greyjoy', specialty: 'Naval strategy', reputation: 85 },
+        { name: 'Euron Greyjoy', specialty: 'Brutal warfare', reputation: 90 },
+        { name: 'Theon Greyjoy', specialty: 'Archery', reputation: 70 }
+      ],
+      strategic_assets: [
+        'Iron Fleet - Largest naval force',
+        'Pyke - Island fortress',
+        'Coastal Mobility - Strike anywhere',
+        'Longships - Fast attack vessels'
+      ],
+      recent_battles: [
+        { name: 'Greyjoy Rebellion', outcome: 'Defeat', impact: 'Crushed by Robert Baratheon' },
+        { name: 'Raid on Lannisport', outcome: 'Victory', impact: 'Destroyed Lannister fleet' }
+      ]
+    },
+    tully: {
+      name: 'House Tully',
+      sigil: '🐟',
+      region: 'The Riverlands',
+      totalForces: 40000,
+      color: 'text-blue-400',
+      borderColor: 'border-blue-500',
+      strengths: [
+        { category: 'River Warfare', rating: 88, description: 'Expert in riverine and marsh combat' },
+        { category: 'Alliance Building', rating: 92, description: 'Strong network of vassals and allies' },
+        { category: 'Fertile Lands', rating: 90, description: 'Rich agricultural base for supplies' },
+        { category: 'Strategic Position', rating: 85, description: 'Control key river crossings' },
+        { category: 'Adaptability', rating: 82, description: 'Flexible tactics and strategies' }
+      ],
+      weaknesses: [
+        { category: 'Central Exposure', rating: 25, description: 'Surrounded by potential enemies' },
+        { category: 'Constant Conflict', rating: 30, description: 'Frequently invaded and ravaged' },
+        { category: 'Divided Loyalties', rating: 35, description: 'Vassals often switch sides' },
+        { category: 'Defensive Terrain', rating: 40, description: 'Few natural defensive barriers' }
+      ],
+      composition: {
+        infantry: { count: 25000, quality: 78, specialty: 'River infantry' },
+        cavalry: { count: 10000, quality: 75, specialty: 'River lords\' cavalry' },
+        archers: { count: 5000, quality: 80, specialty: 'Crossbow militia' }
+      },
+      notable_commanders: [
+        { name: 'Hoster Tully', specialty: 'Diplomacy and alliances', reputation: 80 },
+        { name: 'Edmure Tully', specialty: 'Defensive warfare', reputation: 70 },
+        { name: 'Brynden Tully', specialty: 'Tactical innovation', reputation: 88 }
+      ],
+      strategic_assets: [
+        'Riverrun - Strategic river fortress',
+        'River Network - Transport and communication',
+        'Fertile Fields - Agricultural abundance',
+        'The Twins - Control of crossing points'
+      ],
+      recent_battles: [
+        { name: 'Battle of the Fords', outcome: 'Victory', impact: 'Defended river crossings' },
+        { name: 'Siege of Riverrun', outcome: 'Defensive Victory', impact: 'Withstood multiple sieges' }
+      ]
     }
   };
 
