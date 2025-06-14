@@ -1,4 +1,5 @@
 
+
 export interface Army {
   house: string;
   infantry: number;
@@ -169,7 +170,7 @@ export function simulateDetailedBattle(armies: Army[], terrain: string = 'plains
   }
 
   // Phase 3: Infantry Melee
-  battleNarrative.push(`**Phase ${phase++}: The Infantry Melee**);
+  battleNarrative.push(`**Phase ${phase++}: The Infantry Melee**`);
   const strongestInfantry = armyStrengths.reduce((prev, current) => 
     prev.army.infantry > current.army.infantry ? prev : current
   );
@@ -211,3 +212,4 @@ export function simulateDetailedBattle(armies: Army[], terrain: string = 'plains
     duration: `${Math.floor(Math.random() * 6) + 2} hours`
   };
 }
+
