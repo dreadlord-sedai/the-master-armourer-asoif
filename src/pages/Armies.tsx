@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ArmyComparisonTool from '@/components/ArmyComparisonTool';
-import { Sword, Shield, Users, TrendingUp, BarChart3, Map } from 'lucide-react';
+import MilitaryAnalytics from '@/components/MilitaryAnalytics';
+import { Sword, Shield, Users, TrendingUp, BarChart3, Map, Activity } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
@@ -64,8 +65,9 @@ const Armies = () => {
           </div>
 
           <Tabs defaultValue="overview" className="space-y-8">
-            <TabsList className="grid w-full grid-cols-4">
+            <TabsList className="grid w-full grid-cols-5">
               <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="analytics">Deep Analytics</TabsTrigger>
               <TabsTrigger value="comparison">Compare Forces</TabsTrigger>
               <TabsTrigger value="tactics">Tactics</TabsTrigger>
               <TabsTrigger value="battles">Historic Battles</TabsTrigger>
@@ -145,6 +147,23 @@ const Armies = () => {
                   </Card>
                 </div>
               </div>
+            </TabsContent>
+
+            <TabsContent value="analytics" className="space-y-8">
+              <Card className="parchment-card">
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2 text-gold-400">
+                    <Activity className="h-6 w-6" />
+                    <span>Military Intelligence & Analytics</span>
+                  </CardTitle>
+                  <CardDescription>
+                    Comprehensive analysis of military capabilities, strengths, weaknesses, and strategic assessments
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <MilitaryAnalytics />
+                </CardContent>
+              </Card>
             </TabsContent>
 
             <TabsContent value="comparison" className="space-y-8">
