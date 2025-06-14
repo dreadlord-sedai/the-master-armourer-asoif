@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -84,7 +83,7 @@ const InteractiveMap = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      <main className="container mx-auto px-4 pt-24 pb-12">
+      <main className="container mx-auto px-4 pt-20 pb-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-cinzel font-bold text-gold-400 mb-4">
             Interactive Map of Westeros
