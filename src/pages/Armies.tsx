@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import ArmyComparisonTool from '@/components/ArmyComparisonTool';
 import { Sword, Shield, Users, TrendingUp, BarChart3, Map } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -156,15 +156,7 @@ const Armies = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-center py-12">
-                    <Map className="h-24 w-24 text-gold-500 mx-auto mb-4" />
-                    <p className="text-lg font-cormorant text-foreground/70 mb-4">
-                      Interactive comparison tool coming soon
-                    </p>
-                    <Button variant="outline">
-                      Request Access to Beta
-                    </Button>
-                  </div>
+                  <ArmyComparisonTool />
                 </CardContent>
               </Card>
             </TabsContent>
