@@ -2,8 +2,18 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Sword, Shield } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
+  const scrollToFeatures = () => {
+    const featuresSection = document.getElementById('features');
+    if (featuresSection) {
+      featuresSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Effects */}
@@ -53,27 +63,35 @@ const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <Button 
-              size="lg" 
-              className="bg-gold-600 hover:bg-gold-700 text-background font-cormorant font-semibold text-lg px-8 py-3 hover-glow"
-            >
-              <Shield className="mr-2 h-5 w-5" />
-              Explore Houses
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="border-gold-600 text-gold-400 hover:bg-gold-600 hover:text-background font-cormorant font-semibold text-lg px-8 py-3 hover-glow"
-            >
-              <Sword className="mr-2 h-5 w-5" />
-              View Armies
-            </Button>
+            <Link to="/houses">
+              <Button 
+                size="lg" 
+                className="bg-gold-600 hover:bg-gold-700 text-background font-cormorant font-semibold text-lg px-8 py-3 hover-glow"
+              >
+                <Shield className="mr-2 h-5 w-5" />
+                Explore Houses
+              </Button>
+            </Link>
+            <Link to="/armies">
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="border-gold-600 text-gold-400 hover:bg-gold-600 hover:text-background font-cormorant font-semibold text-lg px-8 py-3 hover-glow"
+              >
+                <Sword className="mr-2 h-5 w-5" />
+                View Armies
+              </Button>
+            </Link>
           </div>
 
           {/* Scroll Indicator */}
-          <div className="animate-bounce">
+          <button 
+            onClick={scrollToFeatures}
+            className="animate-bounce cursor-pointer p-2 hover:text-gold-400 transition-colors"
+            aria-label="Scroll to features"
+          >
             <ArrowDown className="h-6 w-6 text-gold-500 mx-auto" />
-          </div>
+          </button>
         </div>
       </div>
 

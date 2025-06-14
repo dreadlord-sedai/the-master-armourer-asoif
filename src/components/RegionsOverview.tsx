@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Shield, Sword, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface Region {
   name: string;
@@ -87,57 +88,70 @@ const RegionsOverview = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {regions.map((region, index) => (
-            <Card 
-              key={region.name} 
-              className="parchment-card hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer"
-              style={{
-                animationDelay: `${index * 100}ms`
-              }}
-            >
-              <CardContent className="p-6">
-                <div className="text-center mb-4">
-                  <div className="text-4xl mb-2">{region.icon}</div>
-                  <h3 className="text-2xl font-cinzel font-bold text-foreground mb-2 group-hover:text-gold-400 transition-colors">
-                    {region.name}
-                  </h3>
-                  <Badge 
-                    className={`bg-gradient-to-r ${region.houseColors} text-white font-cormorant`}
-                  >
-                    {region.majorHouse}
-                  </Badge>
-                </div>
+            <Link key={region.name} to="/houses">
+              <Card 
+                className="parchment-card hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer"
+                style={{
+                  animationDelay: `${index * 100}ms`
+                }}
+              >
+                <CardContent className="p-6">
+                  <div className="text-center mb-4">
+                    <div className="text-4xl mb-2">{region.icon}</div>
+                    <h3 className="text-2xl font-cinzel font-bold text-foreground mb-2 group-hover:text-gold-400 transition-colors">
+                      {region.name}
+                    </h3>
+                    <Badge 
+                      className={`bg-gradient-to-r ${region.houseColors} text-white font-cormorant`}
+                    >
+                      {region.majorHouse}
+                    </Badge>
+                  </div>
 
-                <p className="font-cormorant text-foreground/80 mb-6 text-center leading-relaxed">
-                  {region.description}
-                </p>
+                  <p className="font-cormorant text-foreground/80 mb-6 text-center leading-relaxed">
+                    {region.description}
+                  </p>
 
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <Users className="h-4 w-4 text-gold-500" />
-                      <span className="font-cormorant text-sm text-foreground/80">Total Strength</span>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <Users className="h-4 w-4 text-gold-500" />
+                        <span className="font-cormorant text-sm text-foreground/80">Total Strength</span>
+                      </div>
+                      <span className="font-cinzel font-semibold text-gold-400">{region.strength}</span>
                     </div>
-                    <span className="font-cinzel font-semibold text-gold-400">{region.strength}</span>
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <Sword className="h-4 w-4 text-gold-500" />
-                      <span className="font-cormorant text-sm text-foreground/80">Specialty</span>
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <Sword className="h-4 w-4 text-gold-500" />
+                        <span className="font-cormorant text-sm text-foreground/80">Specialty</span>
+                      </div>
+                      <span className="font-cinzel font-semibold text-gold-400">{region.specialty}</span>
                     </div>
-                    <span className="font-cinzel font-semibold text-gold-400">{region.specialty}</span>
                   </div>
-                </div>
 
-                <div className="mt-6 pt-4 border-t border-gold-700/30">
-                  <div className="flex items-center justify-center text-gold-400 group-hover:text-gold-300 transition-colors">
-                    <Shield className="h-4 w-4 mr-2" />
-                    <span className="font-cormorant text-sm">Explore Houses</span>
+                  <div className="mt-6 pt-4 border-t border-gold-700/30">
+                    <div className="flex items-center justify-center text-gold-400 group-hover:text-gold-300 transition-colors">
+                      <Shield className="h-4 w-4 mr-2" />
+                      <span className="font-cormorant text-sm">Explore Houses</span>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Link to="/battle-simulator">
+            <div className="inline-flex items-center space-x-4 bg-gradient-to-r from-gold-900/20 to-crimson-900/20 rounded-lg p-6 border border-gold-700/30 hover:bg-gold-900/30 transition-colors cursor-pointer">
+              <Sword className="h-6 w-6 text-gold-500" />
+              <p className="font-cormorant text-lg text-foreground/80">
+                "The man who passes the sentence should swing the sword."
+              </p>
+              <Shield className="h-6 w-6 text-gold-500" />
+            </div>
+          </Link>
         </div>
       </div>
     </section>

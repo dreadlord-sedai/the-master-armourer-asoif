@@ -3,12 +3,14 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Shield, Sword, Users, Book, Search, Map } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface Feature {
   title: string;
   description: string;
   icon: React.ElementType;
   color: string;
+  href?: string;
   comingSoon?: boolean;
 }
 
@@ -17,44 +19,49 @@ const features: Feature[] = [
     title: 'Great Houses',
     description: 'Explore the sigils, words, and military strength of every major house in Westeros.',
     icon: Shield,
-    color: 'text-blue-400'
+    color: 'text-blue-400',
+    href: '/houses'
   },
   {
     title: 'Army Analytics',
     description: 'Interactive visualizations of troop strengths, battle formations, and military tactics.',
     icon: Sword,
-    color: 'text-red-400'
+    color: 'text-red-400',
+    href: '/armies'
   },
   {
     title: 'Lords & Commanders',
     description: 'Detailed profiles of the greatest military minds and leaders of the Seven Kingdoms.',
     icon: Users,
-    color: 'text-green-400'
+    color: 'text-green-400',
+    href: '/characters'
   },
   {
     title: 'Battle Chronicles',
     description: 'Relive the greatest battles with detailed tactical analysis and historical context.',
     icon: Book,
-    color: 'text-purple-400'
+    color: 'text-purple-400',
+    href: '/chronicles'
   },
   {
     title: 'Weapons & Armor',
     description: 'From Valyrian steel to dragon glass, discover the legendary weapons of Westeros.',
     icon: Search,
-    color: 'text-yellow-400'
+    color: 'text-yellow-400',
+    href: '/armoury'
   },
   {
-    title: 'Interactive Maps',
-    description: 'Explore Westeros with dynamic maps showing territories, troop movements, and more.',
+    title: 'Battle Simulator',
+    description: 'Command armies and simulate epic battles across the Seven Kingdoms.',
     icon: Map,
     color: 'text-cyan-400',
-    comingSoon: true
+    href: '/battle-simulator'
   }
 ];
 
 const FeaturesPreview = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-iron-900/20 to-background">
+    <section id="features" className="py-20 bg-gradient-to-b from-iron-900/20 to-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-foreground mb-4">
@@ -98,14 +105,26 @@ const FeaturesPreview = () => {
                   {feature.description}
                 </p>
 
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  className="border-gold-600 text-gold-400 hover:bg-gold-600 hover:text-background font-cormorant transition-all duration-300"
-                  disabled={feature.comingSoon}
-                >
-                  {feature.comingSoon ? 'Coming Soon' : 'Explore'}
-                </Button>
+                {feature.href ? (
+                  <Link to={feature.href}>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="border-gold-600 text-gold-400 hover:bg-gold-600 hover:text-background font-cormorant transition-all duration-300"
+                    >
+                      Explore
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="border-gold-600 text-gold-400 hover:bg-gold-600 hover:text-background font-cormorant transition-all duration-300"
+                    disabled={feature.comingSoon}
+                  >
+                    {feature.comingSoon ? 'Coming Soon' : 'Explore'}
+                  </Button>
+                )}
               </CardContent>
             </Card>
           ))}

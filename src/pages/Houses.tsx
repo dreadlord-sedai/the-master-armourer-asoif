@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { Shield, Sword, Crown, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Link } from 'react-router-dom';
 
 const Houses = () => {
   const [selectedRegion, setSelectedRegion] = useState('all');
@@ -151,13 +152,42 @@ const Houses = () => {
                   <p className="font-cormorant text-foreground/70 text-sm">
                     {house.description}
                   </p>
-                  <Button className="w-full mt-4" variant="outline">
-                    <Shield className="h-4 w-4 mr-2" />
-                    View House Details
-                  </Button>
+                  <Link to="/battle-simulator">
+                    <Button className="w-full mt-4" variant="outline">
+                      <Shield className="h-4 w-4 mr-2" />
+                      Command This House
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center mt-16">
+            <div className="bg-gradient-to-r from-gold-900/20 to-crimson-900/20 rounded-lg p-8 border border-gold-700/30 max-w-4xl mx-auto">
+              <h3 className="text-2xl font-cinzel font-bold text-gold-400 mb-4">
+                Ready to Command?
+              </h3>
+              <p className="font-cormorant text-lg text-foreground/80 mb-6">
+                Choose your house and lead them to victory in the Battle Simulator. 
+                Test your tactical skills against the greatest military minds of Westeros.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link to="/battle-simulator">
+                  <Button size="lg" className="bg-gold-600 hover:bg-gold-700 text-background font-cormorant">
+                    <Sword className="mr-2 h-5 w-5" />
+                    Battle Simulator
+                  </Button>
+                </Link>
+                <Link to="/armies">
+                  <Button size="lg" variant="outline" className="border-gold-600 text-gold-400 hover:bg-gold-600 hover:text-background font-cormorant">
+                    <Shield className="mr-2 h-5 w-5" />
+                    Army Analytics
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
