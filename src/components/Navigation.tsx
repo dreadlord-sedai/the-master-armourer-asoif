@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Shield, Sword, Users, Book, Search } from 'lucide-react';
+import { Menu, Shield, Sword, Users, Book, Search, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Navigation = () => {
@@ -14,6 +14,7 @@ const Navigation = () => {
     { name: 'Characters', icon: Users, href: '/characters', description: 'Lords & Commanders' },
     { name: 'Chronicles', icon: Book, href: '/chronicles', description: 'Battles & History' },
     { name: 'Armoury', icon: Search, href: '/armoury', description: 'Weapons & Equipment' },
+    { name: 'Battle Simulator', icon: Play, href: '/battle-simulator', description: 'Command Your Armies' },
   ];
 
   return (

@@ -10,6 +10,7 @@ import Armies from "./pages/Armies";
 import Characters from "./pages/Characters";
 import Chronicles from "./pages/Chronicles";
 import Armoury from "./pages/Armoury";
+import BattleSimulator from "./pages/BattleSimulator";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/characters" element={<Characters />} />
           <Route path="/chronicles" element={<Chronicles />} />
           <Route path="/armoury" element={<Armoury />} />
+          <Route path="/battle-simulator" element={<BattleSimulator />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
