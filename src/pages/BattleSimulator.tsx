@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -8,11 +7,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { simulateDetailedBattle, DetailedBattleResult, Army, HOUSE_TRAITS } from '@/utils/battleLogic';
+import { HouseName } from '@/utils/types/battle';
 import { toast } from 'sonner';
 
 interface TroopPlacement {
   id: string;
-  house: string;
+  house: HouseName;
   x: number;
   y: number;
   infantry: number;
@@ -36,12 +36,12 @@ const BattleSimulator = () => {
   const mapRef = useRef<HTMLDivElement>(null);
 
   const houses = [
-    { id: 'stark', name: 'House Stark', color: '#64748b', commander: 'Robb Stark' },
-    { id: 'lannister', name: 'House Lannister', color: '#dc2626', commander: 'Tywin Lannister' },
-    { id: 'tyrell', name: 'House Tyrell', color: '#16a34a', commander: 'Randyll Tarly' },
-    { id: 'baratheon', name: 'House Baratheon', color: '#eab308', commander: 'Robert Baratheon' },
-    { id: 'martell', name: 'House Martell', color: '#ea580c', commander: 'Oberyn Martell' },
-    { id: 'arryn', name: 'House Arryn', color: '#2563eb', commander: 'Jon Arryn' }
+    { id: 'stark', name: 'House Stark' as HouseName, color: '#64748b', commander: 'Robb Stark' },
+    { id: 'lannister', name: 'House Lannister' as HouseName, color: '#dc2626', commander: 'Tywin Lannister' },
+    { id: 'tyrell', name: 'House Tyrell' as HouseName, color: '#16a34a', commander: 'Randyll Tarly' },
+    { id: 'baratheon', name: 'House Baratheon' as HouseName, color: '#eab308', commander: 'Robert Baratheon' },
+    { id: 'martell', name: 'House Martell' as HouseName, color: '#ea580c', commander: 'Oberyn Martell' },
+    { id: 'arryn', name: 'House Arryn' as HouseName, color: '#2563eb', commander: 'Jon Arryn' }
   ];
 
   const terrains = [
