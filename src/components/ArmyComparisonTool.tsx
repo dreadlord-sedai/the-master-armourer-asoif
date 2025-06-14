@@ -1,4 +1,17 @@
 
+/**
+ * @fileoverview Army Comparison Tool Component
+ * 
+ * Provides comprehensive side-by-side military analysis between Great Houses
+ * of Westeros, including troop composition, quality metrics, and strategic advantages.
+ * 
+ * Features:
+ * - Interactive house selection
+ * - Statistical comparison with visual indicators
+ * - Strategic strength/weakness analysis
+ * - Lore-accurate military data
+ */
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -6,11 +19,49 @@ import { Button } from '@/components/ui/button';
 import { Users, Sword, TrendingUp, Shield, Crown, Swords, Star, Award } from 'lucide-react';
 import { HOUSE_TRAITS } from '@/utils/battleLogic';
 
-const ArmyComparisonTool = () => {
-  const [house1, setHouse1] = useState('');
-  const [house2, setHouse2] = useState('');
+/**
+ * House military data interface
+ */
+interface HouseData {
+  name: string;
+  troops: number;
+  cavalry: number;
+  infantry: number;
+  archers: number;
+  specialty: string;
+  commander: string;
+  stronghold: string;
+  color: string;
+  sigil: string;
+  discipline: number;
+  morale: number;
+  equipment: number;
+  description: string;
+}
 
-  const armyData = {
+/**
+ * Statistical comparison advantage types
+ */
+type AdvantageType = 'advantage' | 'disadvantage' | 'equal';
+
+/**
+ * Army Comparison Tool Component
+ * 
+ * Allows users to select and compare military capabilities between two Great Houses.
+ * Provides detailed statistical analysis, visual comparisons, and strategic insights.
+ * 
+ * @returns JSX.Element The complete army comparison interface
+ */
+const ArmyComparisonTool: React.FC = () => {
+  // State for selected houses
+  const [house1, setHouse1] = useState<string>('');
+  const [house2, setHouse2] = useState<string>('');
+
+  /**
+   * Military data for all Great Houses based on Game of Thrones lore
+   * Data includes troop numbers, composition, quality metrics, and strategic information
+   */
+  const armyData: Record<string, HouseData> = {
     'house-tyrell': {
       name: 'House Tyrell',
       troops: 80000,
@@ -113,20 +164,90 @@ const ArmyComparisonTool = () => {
   const selectedHouse1 = house1 ? armyData[house1] : null;
   const selectedHouse2 = house2 ? armyData[house2] : null;
 
-  const clearComparison = () => {
+  /**
+   * Clears both house selections and resets the comparison
+   */
+  const clearComparison = (): void => {
     setHouse1('');
     setHouse2('');
   };
 
-  const getAdvantage = (value1, value2) => {
+  /**
+   * Determines the advantage type between two numerical values
+   * 
+   * @param value1 - First value to compare
+   * @param value2 - Second value to compare
+   * @returns AdvantageType indicating which value is superior
+   */
+  const getAdvantage = (value1: number, value2: number): AdvantageType => {
     if (value1 > value2) return 'advantage';
     if (value1 < value2) return 'disadvantage';
     return 'equal';
   };
 
-  const StatComparison = ({ label, value1, value2, icon: Icon, house1Color, house2Color, showAsPercent = false }) => {
-    const advantage1 = getAdvantage(value1, value2);
-    const advantage2 = getAdvantage(value2, value1);
+  /**
+   * Statistical Comparison Component
+   * 
+   * Renders a side-by-side comparison of a specific metric between two houses
+   * with visual indicators for advantages and disadvantages.
+   * 
+   * @param props - Component properties
+   * @param props.label - Display label for the statistic
+   * @param props.value1 - Value for the first house
+   * @param props.value2 - Value for the second house
+   * @param props.icon - Lucide icon component for the statistic
+   * @param props.house1Color - Tailwind color class for house 1
+   * @param props.house2Color - Tailwind color class for house 2
+   * @param props.showAsPercent - Whether to display values as percentages
+   */
+  interface StatComparisonProps {
+    label: string;
+    value1: number | string;
+    value2: number | string;
+    icon: React.ComponentType<{ className?: string }>;
+    house1Color: string;
+    house2Color: string;
+    showAsPercent?: boolean;
+  }
+
+  const StatComparison: React.FC<StatComparisonProps> = ({ 
+    label, 
+    value1, 
+    value2, 
+    icon: Icon, 
+    house1Color, 
+    house2Color, 
+    showAsPercent = false 
+  }) => {
+    // Only calculate advantages for numerical values
+    const advantage1 = typeof value1 === 'number' && typeof value2 === 'number' 
+      ? getAdvantage(value1, value2) 
+      : 'equal';
+    const advantage2 = typeof value1 === 'number' && typeof value2 === 'number' 
+      ? getAdvantage(value2, value1) 
+      : 'equal';
+
+    /**
+     * Returns appropriate styling classes based on advantage type
+     */
+    const getAdvantageClass = (advantage: AdvantageType): string => {
+      switch (advantage) {
+        case 'advantage':
+          return 'bg-green-900/30 border-green-500/50';
+        case 'disadvantage':
+          return 'bg-red-900/30 border-red-500/50';
+        default:
+          return 'bg-iron-900/30 border-iron-500/50';
+      }
+    };
+
+    /**
+     * Formats display value based on type and configuration
+     */
+    const formatValue = (value: number | string): string => {
+      if (typeof value === 'string') return value;
+      return showAsPercent ? `${value}%` : value.toLocaleString();
+    };
 
     return (
       <div className="space-y-2">
@@ -135,17 +256,21 @@ const ArmyComparisonTool = () => {
           <span className="font-cormorant font-semibold">{label}</span>
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <div className={`text-center p-3 rounded-lg border ${advantage1 === 'advantage' ? 'bg-green-900/30 border-green-500/50' : advantage1 === 'disadvantage' ? 'bg-red-900/30 border-red-500/50' : 'bg-iron-900/30 border-iron-500/50'}`}>
+          <div className={`text-center p-3 rounded-lg border ${getAdvantageClass(advantage1)}`}>
             <div className={`text-lg font-bold ${house1Color}`}>
-              {typeof value1 === 'number' ? (showAsPercent ? `${value1}%` : value1.toLocaleString()) : value1}
+              {formatValue(value1)}
             </div>
-            {advantage1 === 'advantage' && <div className="text-xs text-green-400 mt-1">Advantage</div>}
+            {advantage1 === 'advantage' && (
+              <div className="text-xs text-green-400 mt-1">Advantage</div>
+            )}
           </div>
-          <div className={`text-center p-3 rounded-lg border ${advantage2 === 'advantage' ? 'bg-green-900/30 border-green-500/50' : advantage2 === 'disadvantage' ? 'bg-red-900/30 border-red-500/50' : 'bg-iron-900/30 border-iron-500/50'}`}>
+          <div className={`text-center p-3 rounded-lg border ${getAdvantageClass(advantage2)}`}>
             <div className={`text-lg font-bold ${house2Color}`}>
-              {typeof value2 === 'number' ? (showAsPercent ? `${value2}%` : value2.toLocaleString()) : value2}
+              {formatValue(value2)}
             </div>
-            {advantage2 === 'advantage' && <div className="text-xs text-green-400 mt-1">Advantage</div>}
+            {advantage2 === 'advantage' && (
+              <div className="text-xs text-green-400 mt-1">Advantage</div>
+            )}
           </div>
         </div>
       </div>
@@ -154,7 +279,7 @@ const ArmyComparisonTool = () => {
 
   return (
     <div className="space-y-6">
-      {/* House Selection */}
+      {/* House Selection Interface */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card className="parchment-card">
           <CardHeader>
@@ -203,10 +328,10 @@ const ArmyComparisonTool = () => {
         </Card>
       </div>
 
-      {/* Comparison Results */}
+      {/* Comparison Results Display */}
       {selectedHouse1 && selectedHouse2 && (
         <div className="space-y-6">
-          {/* House Headers */}
+          {/* House Header Cards */}
           <div className="grid grid-cols-2 gap-6">
             <Card className="parchment-card text-center">
               <CardContent className="pt-6">
@@ -235,7 +360,7 @@ const ArmyComparisonTool = () => {
             </Card>
           </div>
 
-          {/* Detailed Comparison */}
+          {/* Detailed Military Analysis */}
           <Card className="parchment-card">
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
@@ -248,7 +373,7 @@ const ArmyComparisonTool = () => {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Army Size Comparison */}
+                {/* Army Composition Statistics */}
                 <div className="space-y-4">
                   <h3 className="text-lg font-cinzel font-bold text-gold-400 border-b border-gold-500/30 pb-2">
                     Army Composition
@@ -291,7 +416,7 @@ const ArmyComparisonTool = () => {
                   />
                 </div>
 
-                {/* Military Quality */}
+                {/* Military Quality Metrics */}
                 <div className="space-y-4">
                   <h3 className="text-lg font-cinzel font-bold text-gold-400 border-b border-gold-500/30 pb-2">
                     Military Quality
@@ -340,13 +465,14 @@ const ArmyComparisonTool = () => {
             </CardContent>
           </Card>
 
-          {/* Strategic Analysis */}
+          {/* Strategic Analysis Section */}
           <Card className="parchment-card">
             <CardHeader>
               <CardTitle className="text-gold-400">Strategic Assessment</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* House 1 Strengths */}
                 <div>
                   <h4 className={`font-cinzel font-bold mb-3 ${selectedHouse1.color}`}>
                     {selectedHouse1.name} Strengths
@@ -383,6 +509,7 @@ const ArmyComparisonTool = () => {
                   </ul>
                 </div>
                 
+                {/* House 2 Strengths */}
                 <div>
                   <h4 className={`font-cinzel font-bold mb-3 ${selectedHouse2.color}`}>
                     {selectedHouse2.name} Strengths
@@ -424,6 +551,7 @@ const ArmyComparisonTool = () => {
         </div>
       )}
 
+      {/* Empty State when no houses selected */}
       {(!selectedHouse1 || !selectedHouse2) && (
         <Card className="parchment-card">
           <CardContent className="text-center py-12">
