@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -17,10 +16,54 @@ import {
   Users
 } from 'lucide-react';
 
+// Add type definitions for better TypeScript support
+interface CompositionUnit {
+  count: number;
+  quality: number;
+  specialty: string;
+}
+
+interface Commander {
+  name: string;
+  specialty: string;
+  reputation: number;
+}
+
+interface Battle {
+  name: string;
+  outcome: string;
+  impact: string;
+}
+
+interface StrengthWeakness {
+  category: string;
+  rating: number;
+  description: string;
+}
+
+interface HouseAnalytics {
+  name: string;
+  sigil: string;
+  region: string;
+  totalForces: number;
+  color: string;
+  borderColor: string;
+  strengths: StrengthWeakness[];
+  weaknesses: StrengthWeakness[];
+  composition: {
+    infantry: CompositionUnit;
+    cavalry: CompositionUnit;
+    archers: CompositionUnit;
+  };
+  notable_commanders: Commander[];
+  strategic_assets: string[];
+  recent_battles: Battle[];
+}
+
 const MilitaryAnalytics = () => {
   const [selectedHouse, setSelectedHouse] = useState('tyrell');
 
-  const houseAnalytics = {
+  const houseAnalytics: Record<string, HouseAnalytics> = {
     tyrell: {
       name: 'House Tyrell',
       sigil: '🌹',
@@ -189,7 +232,12 @@ const MilitaryAnalytics = () => {
 
   const currentHouse = houseAnalytics[selectedHouse];
 
-  const StrengthWeaknessBar = ({ category, rating, description, isWeakness = false }) => (
+  const StrengthWeaknessBar = ({ category, rating, description, isWeakness = false }: {
+    category: string;
+    rating: number;
+    description: string;
+    isWeakness?: boolean;
+  }) => (
     <div className="space-y-2">
       <div className="flex justify-between items-center">
         <span className="font-cormorant font-semibold">{category}</span>
@@ -369,7 +417,7 @@ const MilitaryAnalytics = () => {
 
         <TabsContent value="composition" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {Object.entries(currentHouse.composition).map(([type, data]) => (
+            {Object.entries(currentHouse.composition).map(([type, data]: [string, CompositionUnit]) => (
               <Card key={type} className="parchment-card">
                 <CardHeader>
                   <CardTitle className={`${currentHouse.color} flex items-center space-x-2`}>
