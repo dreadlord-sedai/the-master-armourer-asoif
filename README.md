@@ -1,5 +1,4 @@
-
-# 🏰 Game of Thrones: Military Command Center
+# 🏰 The Master Armorer: Donal Noye
 
 > *"In the game of thrones, you win or you die"* - Cersei Lannister
 
@@ -12,7 +11,7 @@ A comprehensive, interactive web application that brings the military strategies
 
 ## 🎯 Overview
 
-The **Game of Thrones Military Command Center** is a sophisticated web application that allows users to:
+**The Master Armorer: Donal Noye** is a sophisticated web application that allows users to:
 
 - **🗡️ Simulate Epic Battles**: Deploy armies with authentic tactical considerations
 - **📊 Analyze Military Strength**: Compare the capabilities of Great Houses
@@ -72,7 +71,7 @@ npm >= 7.0.0 or yarn >= 1.22.0
 1. **Clone and Install**
    ```bash
    git clone <repository-url>
-   cd game-of-thrones-military-center
+   cd the-master-armorer
    npm install
    ```
 
@@ -367,7 +366,7 @@ Built with [Lovable](https://lovable.dev) - Educational and entertainment use.
 
 ### 🎯 Links
 
-- **[Live Demo](https://your-app.lovable.app)** - Experience the application
+- **[Live Demo](https://the-master-armorer.lovable.app)** - Experience the application
 - **[API Documentation](API.md)** - Complete technical reference
 - **[Contributing Guide](CONTRIBUTING.md)** - How to contribute
 - **[Lovable Platform](https://lovable.dev)** - Build your own apps
