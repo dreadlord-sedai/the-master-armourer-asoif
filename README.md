@@ -4,7 +4,6 @@
 
 A comprehensive, interactive web application that brings the military strategies and political dynamics of Westeros to life. Experience authentic Game of Thrones warfare through advanced battle simulations, house analytics, and immersive storytelling.
 
-[![Built with Lovable](https://img.shields.io/badge/Built%20with-Lovable-ff69b4.svg)](https://lovable.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
@@ -257,11 +256,6 @@ npm run format
 
 ## 🚀 Deployment Options
 
-### Lovable Hosting (Recommended)
-1. Click **Publish** in Lovable editor
-2. Automatic deployment to `yourapp.lovable.app`
-3. Optional custom domain configuration
-
 ### External Hosting
 ```bash
 npm run build
@@ -351,15 +345,11 @@ npm run type-check
 - [ ] **Diplomatic System**: Alliance mechanics
 - [ ] **Custom Maps**: User-generated battlefields
 
-## 📄 License
-
-Built with [Lovable](https://lovable.dev) - Educational and entertainment use.
 
 ## 🙏 Acknowledgments
 
 - **George R.R. Martin** - Creator of the A Song of Ice and Fire series
 - **HBO** - Game of Thrones television adaptation
-- **Lovable Team** - Excellent development platform
 - **Open Source Community** - Amazing tools and libraries used
 
 ---
@@ -369,7 +359,6 @@ Built with [Lovable](https://lovable.dev) - Educational and entertainment use.
 - **[Live Demo](https://the-master-armorer.lovable.app)** - Experience the application
 - **[API Documentation](API.md)** - Complete technical reference
 - **[Contributing Guide](CONTRIBUTING.md)** - How to contribute
-- **[Lovable Platform](https://lovable.dev)** - Build your own apps
 
 *"The night is dark and full of terrors, but your armies are ready."*
 
